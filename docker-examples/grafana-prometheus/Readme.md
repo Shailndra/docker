@@ -30,8 +30,11 @@ docker ps
 
 ### Once the containers are up and running
 
->Log into Grafana (default username "admin" and password "admin").
->Go to Configuration > Data sources
->Click Add data source
->Pick Prometheus as the data type
->Set the URL as http://hostname:9090 and click Save & test down the bottom.
+> Log into Grafana (default username "admin" and password "admin").
+> Go to Configuration > Data sources.
+> Click Add data source
+> Pick Prometheus as the data type
+> Set the URL as http://hostname:9090 and click Save & test down the bottom.
+
+Hit: http://localhost:9090 (prometheus) <br /> 
+Hit: http://hostname:3000  (grafana)
