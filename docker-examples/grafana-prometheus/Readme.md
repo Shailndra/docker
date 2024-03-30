@@ -5,16 +5,21 @@
 > It is required to setup a hostname else one can always check hostname
 > by typing "hostname" on mac/linux based machines
 
+### Creating a docker netowk
 
 ```
 docker network create grafana_prometheus        
 ```
 
+### Running prometheus on docker with docker network created
+
 ```
 docker run --rm --name my-prometheus --network grafana_prometheus --publish 9090:9090 --volume ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml --detach prom/prometheus
 ```
 
+### Running grafana on docker with docker network created
 
 ```
 docker run --rm --name grafana --network grafana_prometheus --publish 3000:3000 --detach grafana/grafana-oss:latest
 ```
+### Once 
