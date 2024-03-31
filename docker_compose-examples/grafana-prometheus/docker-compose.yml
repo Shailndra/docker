@@ -9,8 +9,8 @@ services:
     ports:
       - '9090:9090'
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus:/prometheus
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus:/prometheus
     networks:
       monitoring:
         aliases:
