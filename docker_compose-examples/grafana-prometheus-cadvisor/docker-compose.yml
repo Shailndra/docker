@@ -13,3 +13,15 @@ services:
         - "/dev/disk/:/dev/disk:ro"
       ports:
         - "8080:8080"
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yaml
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${PWD}/grafana-datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml
