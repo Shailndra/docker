@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 10s 
+
+scrape_configs:
+  # Prometheus itself
+  # This uses the static method to get metrics endpoints
+  - job_name: "node-exporter"
+    honor_labels: true
+    static_configs:
+      - targets: ["$HOSTNAME:9100"]
