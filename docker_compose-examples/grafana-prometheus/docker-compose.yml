@@ -9,17 +9,19 @@ services:
       - '3000:3000'
     volumes:
       - $PWD/grafana-storage:/var/lib/grafana
+    networks:
+      - grafana-prometheus
 
   prometheus:
-    image: prom/prometheus:v2.6.1
+    image: prom/prometheus
+    container_name: prometheus
     ports:
       - '9090:9090'
     volumes:
       - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
       - ${PWD}/prometheus:/prometheus
     networks:
-      monitoring:
-        aliases:
-          - prometheus
+      - grafana-prometheus
+
 networks:
-  monitoring:
+  grafana-prometheus:
