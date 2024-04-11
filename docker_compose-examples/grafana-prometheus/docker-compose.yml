@@ -9,6 +9,7 @@ services:
       - '3000:3000'
     volumes:
       - $PWD/grafana-storage:/var/lib/grafana
+      - $PWD/grafana-datasource.yml:/var/lib/grafana/grafana-datasource.yml
     networks:
       - grafana-prometheus
 
@@ -19,9 +20,10 @@ services:
       - '9090:9090'
     volumes:
       - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ${PWD}/prometheus:/prometheus
+      - ${PWD}/prometheus-storage:/prometheus
     networks:
       - grafana-prometheus
+#   command: --config.file=$PWD/prometheus.yml
   
   node-exporter:
     image: prom/node-exporter
@@ -34,8 +36,16 @@ services:
     image: prom/alertmanager
     container_name: alertmanager
     restart: unless-stopped
+#    volumes:
+#      - $PWD/alertmanager.yml:/alertmanager.yml
+#    command:
+#      - '--config.file=/alertmanager.yml'
     ports:
       - '9093:9093'
+
+volumes:
+  prometheus-storage:
+  grafana-storage:
 
 networks:
   grafana-prometheus:
