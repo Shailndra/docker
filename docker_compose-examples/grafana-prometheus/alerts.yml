@@ -1,9 +1,17 @@
 groups:
   - name: DemoAlerts
     rules:
-      - alert: InstanceDown 
-        expr: up{job="services"} < 1 
+      - alert: InstanceDown-Testing
+        expr: prometheus_sd_received_updates_total
         for: 5m 
+
+  - name: node-memory
+    expr: node_memory_MemFree_bytes
+
+  - name: DemoAlerts-TestRule
+    rules:
+      - record: job:node_cpu_seconds:avg_idle
+        expr: avg without(cpu)(rate(node_cpu_seconds_total{mode="idle"}[5m]))
 
   - name: example
     rules:

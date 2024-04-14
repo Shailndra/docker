@@ -23,7 +23,7 @@ services:
       - ${PWD}/prometheus-storage:/prometheus
     networks:
       - grafana-prometheus
-#   command: --config.file=$PWD/prometheus.yml
+#   command: --web.enable-lifecycle --config.file=$PWD/prometheus.yml
   
   node-exporter:
     image: prom/node-exporter
@@ -36,8 +36,8 @@ services:
     image: prom/alertmanager
     container_name: alertmanager
     restart: unless-stopped
-#    volumes:
-#      - $PWD/alertmanager.yml:/alertmanager.yml
+    volumes:
+      - "./alertmanager.yml:/alertmanager.yml"
 #    command:
 #      - '--config.file=/alertmanager.yml'
     ports:
